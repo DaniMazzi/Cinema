@@ -12,7 +12,7 @@ import os.log
 class Filme : NSObject, NSCoding {
     
     
-    private var id: Int!
+    var id: Int!
     var nome: String!
     var imagem: UIImage?
     

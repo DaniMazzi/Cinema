@@ -17,14 +17,18 @@ class FilmeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("hello")
+        
         
         if let savedMovies = loadMovies() {
             movies += savedMovies
         } else {
             loadSampleMovies()
         }
+        sortMovies()
+        
     }
+    
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "cellFilme"
@@ -110,10 +114,14 @@ class FilmeTableViewController: UITableViewController {
             tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
             
+            sortMovies()
             saveMovies()
         }
     }
     
+    private func sortMovies(){
+        movies = movies.sorted(by:  { $0.nome.uppercased() < $1.nome.uppercased() } )
+    }
     
     //MARK: Private Methods
     
